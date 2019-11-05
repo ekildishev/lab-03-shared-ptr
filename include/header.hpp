@@ -11,7 +11,7 @@
 
 template <typename T>
 class SharedPtr{
-    std::atomic_size_t *refCounter;
+    std::atomic_size_t *refCounter = nullptr;
     T* elemPointer = nullptr;
 public:
     SharedPtr()
@@ -37,7 +37,7 @@ public:
         {
             return;
         }
-        if(--*(refCounter) == 0)
+        if(--(*refCounter) == 0)
         {
             delete refCounter;
             delete elemPointer;
@@ -97,7 +97,7 @@ public:
     }
     void reset()
     {
-        *this = SharedPtr();
+        *this = std::move(SharedPtr());
     }
     void reset(T* ptr)
     {
@@ -113,3 +113,4 @@ public:
         return *refCounter;
     };
 };
+
