@@ -37,13 +37,13 @@ public:
         {
             return;
         }
-        if(*refCounter-- == 0)
+        if(*(refCounter)-- == 0)
         {
             delete refCounter;
             delete elemPointer;
         }
     }
-    auto opeartor=(const SharedPtr& r) -> SharedPtr&
+    auto operator=(const SharedPtr& r) -> SharedPtr&
     {
         if(this == &r)
         {
@@ -52,10 +52,10 @@ public:
         this->~SharedPtr();
         elemPointer = r.elemPointer;
         refCounter = r.refCounter;
-        *(refCounter)++;
+        (*refCounter)++;
         return *this;
     }
-    auto opeartor=(const SharedPtr&& r) -> SharedPtr&
+    auto operator=(SharedPtr&& r) noexcept -> SharedPtr&
     {
         if(this == &r)
         {
@@ -66,7 +66,7 @@ public:
         refCounter = r.refCounter;
         r.refCounter = nullptr;
         r.elemPointer = nullptr;
-        *(refCounter)++;
+        (*refCounter)++;
         return *this;
     }
 
@@ -111,5 +111,5 @@ public:
     auto use_count() const -> size_t
     {
         return *refCounter;
-    }
+    };
 };
