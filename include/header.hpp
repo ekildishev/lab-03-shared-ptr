@@ -37,7 +37,7 @@ public:
         {
             return;
         }
-        if(*(refCounter)-- == 0)
+        if(--*(refCounter) == 0)
         {
             delete refCounter;
             delete elemPointer;
