@@ -26,6 +26,5 @@ TEST(Example, EmptyTest) {
     EXPECT_EQ(static_cast<bool>(intSharedPtrMove), true);
     EXPECT_EQ(intSharedPtrMove.operator->(), intNumPtr);
 
-    intSharedPtr.reset();
-    EXPECT_EQ(intSharedPtrMove.use_count(), 0);
+    intSharedPtrMove.reset();
 }
