@@ -1,9 +1,9 @@
 // Copyright 2018 Your Name <your_email>
 #pragma once
-/*#ifndef INCLUDE_HEADER_HPP_
+#ifndef INCLUDE_HEADER_HPP_
 #define INCLUDE_HEADER_HPP_
 
-#endif // INCLUDE_HEADER_HPP_*/
+#endif // INCLUDE_HEADER_HPP_
 
 #include <iostream>
 #include <cstddef>
@@ -97,7 +97,7 @@ public:
     }
     void reset()
     {
-        *this = std::move(SharedPtr());
+        *this = SharedPtr();
     }
     void reset(T* ptr)
     {
@@ -105,7 +105,8 @@ public:
     }
     void swap(SharedPtr& r)
     {
-        *this = SharedPtr(r);
+        std::swap(refCounter, r.refCounter);
+        std::swap(elemPointer, r.elemPointer);
     }
     // возвращает количество объектов SharedPtr, которые ссылаются на тот же управляемый объект
     auto use_count() const -> size_t
