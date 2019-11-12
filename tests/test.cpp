@@ -28,4 +28,10 @@ TEST(Example, EmptyTest) {
 
     intSharedPtrMove.reset();
     EXPECT_EQ(static_cast<bool>(intSharedPtrMove), false);
+    
+    int newInt = 10;
+    auto *newIntPtr = new int(newInt);
+    intSharedPtr.reset(newIntPtr);
+    EXPECT_EQ(static_cast<bool>(intSharedPtr), true);
+    EXPECT_EQ(intSharedPtr.get(), newIntPtr);
 }
