@@ -34,4 +34,8 @@ TEST(Example, EmptyTest) {
     intSharedPtr.reset(newIntPtr);
     EXPECT_EQ(static_cast<bool>(intSharedPtr), true);
     EXPECT_EQ(intSharedPtr.get(), newIntPtr);
+    
+    intSharedPtr.swap(intSharedPtrMove);
+    EXPECT_EQ(static_cast<bool>(intSharedPtr), false);
+    EXPECT_EQ(static_cast<bool>(intSharedPtrMove), true);
 }
