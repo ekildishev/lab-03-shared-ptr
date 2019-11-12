@@ -10,9 +10,6 @@ jobs:
   - name: "tests"
     script:
     - docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/tests.sh
-  - name: "coverage"
-      script:
-        - docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/coverage.sh
 
 notifications:
     email: false
